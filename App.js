@@ -1,7 +1,8 @@
-import ExpenseItem from "./components/expenseItem";
+import ExpenseItem from "./components/Expenses/expenseItem";
 import "./App.css";
+import './components/Expenses/expenses.css'
 
-function App() {
+ const App=() =>{
   const expense = [
     { title: "car Insurance", amount: 200, date: new Date(2023, 3, 12), location:"agra" },
   ];
@@ -9,7 +10,7 @@ function App() {
 
   
   return (
-    <div>
+    <div className="expenses">
       <ExpenseItem
         title={expense[0].title}
         amount={expense[0].amount}
