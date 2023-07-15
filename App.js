@@ -12,7 +12,7 @@ const dummy_expenses = [
   {
     title: "car Insurance",
     amount: 200,
-    date: new Date(2023, 3, 12),
+    date: new Date(2022, 3, 12),
     id: "id1",
   },
 ];
@@ -26,11 +26,19 @@ const App = () => {
     })
   };
 
-  const [filteredYear, setFilteredYear] = useState("2020");
+  const [filteredYear, setFilteredYear] = useState("2022");
 
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
+
+ 
+
+  const filteredExpenses = expenses.filter(expense => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
+
+  
 
   return (
     <div>
@@ -40,7 +48,7 @@ const App = () => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {expenses.map((expense) => {
+        {filteredExpenses.map((expense) => {
           return(<ExpenseItem
           key ={expense.id}
             title={expense.title}
