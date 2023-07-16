@@ -1,7 +1,7 @@
 import "./expenseItem.css";
 import ExpenseDate from "./expenseDate";
 import ExpenseDetails from "./expenseDetails";
-//import Card from "../UI/card";
+import Card from "../UI/card";
 import React ,{useState} from 'react';
 
 const ExpenseItem=(props) =>{
@@ -15,15 +15,20 @@ const [amount , setAmount] =useState(props.amount);
     setAmount(100)
   }
 
+ function deleteFun(){
+    document.getElementById('id1').remove();
+  }
+
   
   return (
-    <div className="expense-item">
+    <li>
+    <Card  className="expense-item">
       <ExpenseDate date = {props.date}/>
-      <ExpenseDetails  amount={amount}
-       location={props.location}   title={title} />
+      <ExpenseDetails  amount={amount}  title={title} />
        <button onClick={amountHandler}>change amount</button>
       <button onClick={clickHandler}>Change Title</button>
-    </div>
+      <button id="delete" onClick={deleteFun}>delete</button>
+    </Card></li>
   );
 }
 
