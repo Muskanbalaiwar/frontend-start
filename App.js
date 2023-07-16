@@ -38,7 +38,20 @@ const App = () => {
     return expense.date.getFullYear().toString() === filteredYear;
   });
 
-  
+  let expenseContent =<p>No expense in the list</p>
+  if(filteredExpenses.length===1){
+    expenseContent =<p>Only single Expense here. Please add more...</p>
+  }
+  if(filteredExpenses.length>1){
+    expenseContent =filteredExpenses.map((expense) => {
+          return(<ExpenseItem
+          key ={expense.id}
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+          />);
+        })
+  }
 
   return (
     <div>
@@ -48,14 +61,7 @@ const App = () => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {filteredExpenses.map((expense) => {
-          return(<ExpenseItem
-          key ={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />);
-        })}
+        {expenseContent}
       </Card>
     </div>
   );
