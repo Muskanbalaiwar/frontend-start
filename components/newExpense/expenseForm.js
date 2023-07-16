@@ -2,7 +2,7 @@ import React ,{useState}from "react";
 import './expenseFrom.css'
 
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
 const [enteredTitle ,setEnteredTitle] =useState('')
 const [enteredAmount ,setEnteredAmount] =useState('')
 const [enteredDate ,setEnteredDate] =useState('')
@@ -63,7 +63,7 @@ const [enteredDate ,setEnteredDate] =useState('')
           date :new Date(enteredDate)
         }
 
-console.log(expenseData)
+props.onSaveExpenseData(expenseData);
 setEnteredTitle('')
 setEnteredAmount('')
 setEnteredDate('')
@@ -86,6 +86,7 @@ setEnteredDate('')
           </div>
         </div>
         <div className='new-expense__actions'>
+        <button type="button" onClick={props.onCancel}>Cancel</button>
           <button type='submit'>Add Expense</button>
         </div>
       </form>
